@@ -1,0 +1,72 @@
+#!/bin/bash
+
+echo "========================================="
+echo "        SERVER PERFORMANCE REPORT"
+echo "========================================="
+
+echo "Date      : $(date)"
+echo "Hostname  : $(hostname)"
+echo
+
+#########################################
+# CPU Usage
+#########################################
+
+cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print 100 - $8}')
+
+echo "========== CPU USAGE =========="
+printf "CPU Usage : %.2f%%\n" "$cpu_usage"
+echo
+
+#########################################
+# Memory Usage
+#########################################
+
+total_mem=$(free -m | awk '/Mem:/ {print $2}')
+used_mem=$(free -m | awk '/Mem:/ {print $3}')
+free_mem=$(free -m | awk '/Mem:/ {print $4}')
+
+used_percent=$((used_mem * 100 / total_mem))
+free_percent=$((free_mem * 100 / total_mem))
+
+echo "========== MEMORY USAGE =========="
+echo "Total Memory : ${total_mem} MB"
+echo "Used Memory  : ${used_mem} MB (${used_percent}%)"
+echo "Free Memory  : ${free_mem} MB (${free_percent}%)"
+echo
+
+#########################################
+# Disk Usage
+#########################################
+
+disk_total=$(df -h / | awk 'NR==2 {print $2}')
+disk_used=$(df -h / | awk 'NR==2 {print $3}')
+disk_free=$(df -h / | awk 'NR==2 {print $4}')
+disk_usage=$(df -h / | awk 'NR==2 {print $5}')
+
+echo "========== DISK USAGE =========="
+echo "Total Disk : $disk_total"
+echo "Used Disk  : $disk_used"
+echo "Free Disk  : $disk_free"
+echo "Usage      : $disk_usage"
+echo
+
+#########################################
+# Top 5 CPU Processes
+#########################################
+
+echo "========== TOP 5 CPU PROCESSES =========="
+ps -eo pid,user,%cpu,%mem,command --sort=-%cpu | head -6
+echo
+
+#########################################
+# Top 5 Memory Processes
+#########################################
+
+echo "========== TOP 5 MEMORY PROCESSES =========="
+ps -eo pid,user,%cpu,%mem,command --sort=-%mem | head -6
+echo
+
+echo "========================================="
+echo "        REPORT COMPLETED"
+echo "========================================="
