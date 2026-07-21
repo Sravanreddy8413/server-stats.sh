@@ -1,0 +1,13 @@
+server-monitor/
+
+├── monitor.sh
+├── README.md
+├── LICENSE
+├── logs/
+├── reports/
+├── screenshots/
+├── cron/
+│   └── cronjob.txt
+├── logrotate/
+│   └── server-monitor
+└── docs/
