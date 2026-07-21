@@ -1,0 +1,24 @@
+=========================================
+        DAILY SERVER REPORT
+=========================================
+
+Hostname        : ip-172-31-22-176.ec2.internal
+Date            : Tue Jul 21 11:02:21 UTC 2026
+
+CPU Usage       : 3%
+Memory Usage    : 58%
+Disk Usage      : 36%
+Disk Inode      : 2%
+
+========== SERVICE STATUS ==========
+nginx : Running
+httpd : Running
+jenkins : Running
+docker : Running
+
+========== NETWORK ==========
+Internet : Connected
+
+========== WEBSITE ==========
+Website : https://www.google.com
+HTTP Status : 200
