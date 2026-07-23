@@ -2,6 +2,7 @@ server-monitor/
 
 ├── monitor.sh
 ├── README.md
+|---jenkinsfile
 ├── LICENSE
 ├── logs/
 ├── reports/
